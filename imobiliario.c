@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
-#include "dados.h"
+#include "lista.h"
 
 // imoveis_disponiveis
 // imoveis_entregues
