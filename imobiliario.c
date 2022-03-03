@@ -93,9 +93,9 @@ int main()
 
     pthread_mutex_destroy(&mutex);
 
-    list(imoveis_disponiveis_cabeca);
-
     printf("Aguardando termino das threads\n");
+
+    list(imoveis_disponiveis_cabeca);
 
     return 0;
 }
