@@ -1,5 +1,5 @@
 compile:
-	gcc imobiliario.c -o prog
+	gcc -pthread imobiliario.c -o prog
 
 exec:
 	./prog

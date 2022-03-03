@@ -14,6 +14,7 @@ void append(Imovel **cabeca_lista, int codigo, char endereco[100], float preco, 
 void list(Imovel *cabeca_lista);
 Imovel *removeFromPosition(Imovel *cabeca_lista, int position);
 int getLastElementPosition(Imovel *cabeca_lista);
+int getQtdElementsInList(Imovel *cabeca_lista);
 
 void append(Imovel **cabeca_lista, int codigo, char endereco[100], float preco, char bairro[100])
 {
@@ -50,7 +51,7 @@ void list(Imovel *noatual)
     while (noatual != NULL)
     {
         i++;
-        printf("\n\nProduto numero %d\nCodigo: %d \nRua: %s \nPreco:R$%.2lf\n\n", i, noatual->codigo, noatual->endereco, noatual->preco);
+        printf("\n\nImóvel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2lf\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
         noatual = noatual->proximo;
     }
 }
@@ -95,8 +96,6 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
 
 int getLastElementPosition(Imovel *noatual)
 {
-    // TODO: Implementar função para funcionar corretamente
-
     int i = 0;
     while (noatual != NULL)
     {
