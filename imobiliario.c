@@ -8,13 +8,6 @@
 #include <unistd.h>
 #endif
 
-// imoveis_disponiveis
-// imoveis_entregues
-
-// 1. Corretor move imóvel da lista de entregue para disponível
-// 2. Corretor cria novos imóveis na lista de disponível
-// 3. Corretor remove um imóvel disponível
-
 #define NUM_THREADS 10
 
 Imovel *imoveis_disponiveis_cabeca = NULL;
