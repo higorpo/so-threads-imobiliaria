@@ -51,7 +51,7 @@ void list(Imovel *noatual)
     while (noatual != NULL)
     {
         i++;
-        printf("\n\nImóvel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2lf\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
+        printf("\n\nImovel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2lf\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
         noatual = noatual->proximo;
     }
 }
@@ -64,7 +64,7 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
     if (position == 0)
     {
         // TODO: Tentar implementar uma maneira de excluir corretamente o nó cabeça.
-        printf("\nNão pode remover o nó cabeça!");
+        printf("\nNao pode remover o no cabeca!");
         return NULL;
     }
 
@@ -78,7 +78,7 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
 
     if (atual == NULL)
     {
-        printf("\n\nNao existe nenhum Imóvel na posicao %d\n", position);
+        printf("\n\nNao existe nenhum Imovel na posicao %d\n", position);
         return NULL;
     }
 
