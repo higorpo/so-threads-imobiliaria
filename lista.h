@@ -5,18 +5,18 @@ typedef struct tipo_imovel
 {
     int codigo;
     char endereco[100];
-    float preco;
+    int preco;
     char bairro[100];
     struct tipo_imovel *proximo;
 } Imovel;
 
-void append(Imovel **cabeca_lista, int codigo, char endereco[100], float preco, char bairro[100]);
+void append(Imovel **cabeca_lista, int codigo, char endereco[100], int preco, char bairro[100]);
 void list(Imovel *cabeca_lista);
 Imovel *removeFromPosition(Imovel *cabeca_lista, int position);
 int getLastElementPosition(Imovel *cabeca_lista);
 int getQtdElementsInList(Imovel *cabeca_lista);
 
-void append(Imovel **cabeca_lista, int codigo, char endereco[100], float preco, char bairro[100])
+void append(Imovel **cabeca_lista, int codigo, char endereco[100], int preco, char bairro[100])
 {
     Imovel *noatual, *nonovo;
 
@@ -51,7 +51,7 @@ void list(Imovel *noatual)
     while (noatual != NULL)
     {
         i++;
-        printf("\n\nImovel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2lf\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
+        printf("\n\nImovel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2d\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
         noatual = noatual->proximo;
     }
 }
@@ -69,6 +69,7 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
     }
 
     int i = 0;
+
     while (atual != NULL && i != position)
     {
         i++;
@@ -90,6 +91,8 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
     {
         anterior->proximo = atual->proximo;
     }
+
+    free(atual);
 
     return atual;
 }
