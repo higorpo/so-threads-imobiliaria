@@ -32,26 +32,30 @@ void append(Imovel **cabeca_lista, int codigo, char endereco[100], int preco, ch
     else
     {
         noatual = *cabeca_lista;
-        while (noatual->proximo != NULL)
+        while (noatual->proximo != NULL && noatual->proximo->codigo != (*cabeca_lista)->codigo)
+        {
             noatual = noatual->proximo;
+        }
 
         nonovo = (Imovel *)malloc(sizeof(Imovel));
         nonovo->codigo = codigo;
         strcpy(nonovo->endereco, endereco);
         nonovo->preco = preco;
         strcpy(nonovo->bairro, bairro);
-        nonovo->proximo = NULL;
+        nonovo->proximo = *cabeca_lista;
         noatual->proximo = nonovo;
     }
 }
 
 void list(Imovel *noatual)
 {
+    Imovel *cabeca = noatual;
     int i = 0;
-    while (noatual != NULL)
+    // while (noatual != NULL)
+    while (noatual->proximo->codigo != cabeca->codigo)
     {
         i++;
-        printf("\n\nImovel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2d\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco);
+        printf("\n\nImovel numero %d\nCodigo: %d \nRua: %s \nBairro: %s \nPreco:R$%.2d\n Codigo do proximo: %d\n\n", i, noatual->codigo, noatual->endereco, noatual->bairro, noatual->preco, noatual->proximo->codigo);
         noatual = noatual->proximo;
     }
 }
@@ -60,17 +64,36 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
 {
     Imovel *anterior = NULL;
     Imovel *atual = noatual;
+    Imovel *cabeca = noatual;
 
     if (position == 0)
     {
-        // TODO: Tentar implementar uma maneira de excluir corretamente o nó cabeça.
-        printf("\nNao pode remover o no cabeca!");
-        return NULL;
+        int i = 0;
+        while (atual->proximo->codigo != cabeca->codigo)
+        {
+            i++;
+            anterior = atual;
+            atual = atual->proximo;
+        }
+
+        if (cabeca->proximo->codigo == atual->codigo)
+        {
+            atual->proximo = NULL;
+        }
+        else if (atual->proximo == NULL)
+        {
+            atual = NULL;
+        }
+        else
+        {
+            atual->proximo = cabeca->proximo;
+        }
+        return cabeca;
     }
 
     int i = 0;
-
-    while (atual != NULL && i != position)
+    // while (atual != NULL && i != position)
+    while (atual->proximo->codigo != cabeca->codigo && i != position)
     {
         i++;
         anterior = atual;
@@ -99,9 +122,11 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
 
 int getLastElementPosition(Imovel *noatual)
 {
+    Imovel *no_cabeca = noatual;
     int i = 0;
-    while (noatual != NULL)
+    while (noatual->proximo->codigo != no_cabeca->codigo)
     {
+        // printf("CODIGO DO PROXIMO NO: %d\n", noatual->proximo->codigo);
         i++;
         noatual = noatual->proximo;
     }
