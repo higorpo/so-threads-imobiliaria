@@ -10,6 +10,7 @@
 
 #define NUM_THREADS 10
 
+// Define os nós iniciais de cada lista
 Imovel *imoveis_disponiveis_cabeca = NULL;
 Imovel *imoveis_entregues_cabeca = NULL;
 
@@ -117,13 +118,16 @@ void *thread_corretor_function(void *arg)
 
 int main()
 {
+    // Define as threads (NUM_THREADS eh o num de threads criadas)
     pthread_t threads_corretor[NUM_THREADS];
     pthread_t threads_inquilino[NUM_THREADS];
 
+    // Faz o init do mutex
     pthread_mutex_init(&mutex, NULL);
 
     printf("Executando o programa, aguarde a inicializacao...\n");
 
+    // Adiciona imoveis default nas listas de entregues e disponíveis
     append(&imoveis_disponiveis_cabeca, 1, "Av. Florida, 23", 1270, "Trindade");
     append(&imoveis_disponiveis_cabeca, 2, "João Goulart, 44", 2270, "Trindade");
     append(&imoveis_disponiveis_cabeca, 3, "Pedro Augusto, 33", 5270, "Trindade");
@@ -132,6 +136,7 @@ int main()
     append(&imoveis_entregues_cabeca, 5, "João Goulart, 77", 6270, "Trindade");
     append(&imoveis_entregues_cabeca, 6, "Pedro Augusto, 23", 1270, "Trindade");
 
+    // Cria as threads de corretores e inquilinos
     for (int i = 0; i < NUM_THREADS; i++)
     {
         printf("Thread de corretor %d criada.\n", i);
@@ -140,16 +145,19 @@ int main()
         pthread_create(&threads_inquilino[i], NULL, thread_inquilino_function, (void *)imoveis_disponiveis_cabeca);
     }
 
+    // Faz o join das threads (volta pra thread principal)
     for (int i = 0; i < NUM_THREADS; i++)
     {
         pthread_join(threads_corretor[i], NULL);
         pthread_join(threads_inquilino[i], NULL);
     }
 
+    // Finaliza o mutex
     pthread_mutex_destroy(&mutex);
 
     printf("Aguardando termino das threads\n");
 
+    // Lista o imóveis da lista de disponíveis
     list(imoveis_disponiveis_cabeca);
 
     return 0;

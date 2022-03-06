@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+// "classe" do imovel
 typedef struct tipo_imovel
 {
     int codigo;
@@ -14,7 +15,6 @@ void append(Imovel **cabeca_lista, int codigo, char endereco[100], int preco, ch
 void list(Imovel *cabeca_lista);
 Imovel *removeFromPosition(Imovel *cabeca_lista, int position);
 int getLastElementPosition(Imovel *cabeca_lista);
-int getQtdElementsInList(Imovel *cabeca_lista);
 
 void append(Imovel **cabeca_lista, int codigo, char endereco[100], int preco, char bairro[100])
 {
@@ -76,14 +76,17 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
             atual = atual->proximo;
         }
 
+        // Caso haja somente dois elementos na lista
         if (cabeca->proximo->codigo == atual->codigo)
         {
             atual->proximo = NULL;
         }
+        // Caso haja só um elemento na lista
         else if (atual->proximo == NULL)
         {
             atual = NULL;
         }
+        // Caso default
         else
         {
             atual->proximo = cabeca->proximo;
