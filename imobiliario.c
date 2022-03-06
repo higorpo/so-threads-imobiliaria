@@ -67,49 +67,6 @@ void *thread_corretor_function(void *arg)
     int randomNumberBetween1And10Seconds = rand() % 10 + 1;
     sleep(randomNumberBetween1And10Seconds);
 
-    // int lista_vazia = 1;
-    // while (lista_vazia == 1)
-    // {
-    //     int lastElementPosition = getLastElementPosition(imovel_disponivel_cabeca);
-
-    //     if (lastElementPosition != 1)
-    //     {
-    //         int randomBetween1AndLastElementPosition = rand() % lastElementPosition + 1;
-    //         printf("Corretor %ld removendo um imovel disponivel\n", pthread_self());
-    //         pthread_mutex_lock(&mutex);
-    //         removeFromPosition(imovel_disponivel_cabeca, randomBetween1AndLastElementPosition);
-    //         pthread_mutex_unlock(&mutex);
-    //         lista_vazia = 0;
-    //         break;
-    //     }
-
-    //     // int lastElementPosition = getLastElementPosition(imovel_disponivel_cabeca);
-
-    //     Imovel *cabeca = imoveis_entregues_cabeca;
-
-    //     while (imoveis_entregues_cabeca != NULL)
-
-    //     {
-    //         if (imoveis_entregues_cabeca->proximo->codigo != cabeca->codigo)
-    //         {
-    //             pthread_mutex_lock(&mutex);
-    //             printf("Corretor %ld movendo imoveis da lista de entregues para disponiveis\n", pthread_self());
-    //             append(&imoveis_disponiveis_cabeca, imoveis_entregues_cabeca->codigo, imoveis_entregues_cabeca->endereco, imoveis_entregues_cabeca->preco, imoveis_entregues_cabeca->bairro);
-    //             imoveis_entregues_cabeca = imoveis_entregues_cabeca->proximo;
-
-    //             pthread_mutex_unlock(&mutex);
-    //         }
-    //         else
-    //         {
-    //             break;
-    //         }
-    //     }
-
-    //     printf("Corretor %ld espera por imoveis disponiveis para remover\n", pthread_self());
-    //     sleep(randomNumberBetween1And10Seconds);
-    //     printf("Corretor %ld volta a tentar remover imoveis disponiveis\n", pthread_self());
-    // }
-
     int lastElementPosition = getLastElementPosition(imovel_disponivel_cabeca);
 
     if (lastElementPosition != 0)
@@ -139,57 +96,6 @@ void *thread_corretor_function(void *arg)
         }
     }
 
-    // int lastElementPosition = getLastElementPosition(imovel_disponivel_cabeca);
-
-    // if (lastElementPosition != 1)
-    // {
-    //     pthread_mutex_lock(&mutex);
-
-    //     printf("Corretor %ld removendo um imovel disponivel\n", pthread_self());
-    //     int randomBetween1AndLastElementPosition = rand() % lastElementPosition + 1;
-    //     removeFromPosition(imovel_disponivel_cabeca, randomBetween1AndLastElementPosition);
-
-    //     pthread_mutex_unlock(&mutex);
-    // }
-
-    // int lastEntreguesElementPosition = getLastElementPosition(imoveis_entregues_cabeca);
-    // printf("Corretor's %ld last element position: %d\n", pthread_self(), lastEntreguesElementPosition);
-
-    // while (imoveis_entregues_cabeca != NULL)
-    // {
-    //     if (lastEntreguesElementPosition == 1)
-    //         break;
-
-    //     printf("Corretor %ld movendo imoveis da lista de entregues para disponiveis\n", pthread_self());
-    //     pthread_mutex_lock(&mutex);
-
-    //     append(&imoveis_disponiveis_cabeca, imoveis_entregues_cabeca->codigo, imoveis_entregues_cabeca->endereco, imoveis_entregues_cabeca->preco, imoveis_entregues_cabeca->bairro);
-    //     imoveis_entregues_cabeca = imoveis_entregues_cabeca->proximo;
-
-    //     pthread_mutex_unlock(&mutex);
-    // }
-
-    // pthread_mutex_lock(&mutex);
-
-    // printf("Corretor %ld removendo um imovel disponivel\n", pthread_self());
-    // int lastElementPosition = getLastElementPosition(imovel_disponivel_cabeca);
-    // int randomBetween1AndLastElementPosition = rand() % lastElementPosition + 1;
-    // removeFromPosition(imovel_disponivel_cabeca, randomBetween1AndLastElementPosition);
-
-    // pthread_mutex_unlock(&mutex);
-
-    // while (imoveis_entregues_cabeca != NULL)
-    // {
-    //     printf("Corretor %ld movendo imoveis da lista de entregues para disponiveis\n", pthread_self());
-
-    //     pthread_mutex_lock(&mutex);
-
-    //     append(&imoveis_disponiveis_cabeca, imoveis_entregues_cabeca->codigo, imoveis_entregues_cabeca->endereco, imoveis_entregues_cabeca->preco, imoveis_entregues_cabeca->bairro);
-    //     imoveis_entregues_cabeca = imoveis_entregues_cabeca->proximo;
-
-    //     pthread_mutex_unlock(&mutex);
-    // }
-
     int randomCodeBetween100And999 = rand() % 900 + 100;
     int randomPriceBetween700And5000 = rand() % 4000 + 700;
 
@@ -218,20 +124,10 @@ int main()
 
     printf("Executando o programa, aguarde a inicializacao...\n");
 
-    // Cria alguns imoveis disponiveis por default.
     append(&imoveis_disponiveis_cabeca, 1, "Av. Florida, 23", 1270, "Trindade");
     append(&imoveis_disponiveis_cabeca, 2, "João Goulart, 44", 2270, "Trindade");
     append(&imoveis_disponiveis_cabeca, 3, "Pedro Augusto, 33", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 4, "Pedro Augusto, 37", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 5, "Pedro Augusto, 53", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 6, "Pedro Augusto, 66", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 7, "Pedro Augusto, 77", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 8, "Pedro Augusto, 42", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 9, "Pedro Augusto, 98", 5270, "Trindade");
-    // append(&imoveis_disponiveis_cabeca, 10, "Pedro Augusto, 13", 5270, "Trindade");
-    // list(imoveis_disponiveis_cabeca);
 
-    // Cria alguns imoveis entregues por default.
     append(&imoveis_entregues_cabeca, 4, "Av. Florida, 43", 2270, "Trindade");
     append(&imoveis_entregues_cabeca, 5, "João Goulart, 77", 6270, "Trindade");
     append(&imoveis_entregues_cabeca, 6, "Pedro Augusto, 23", 1270, "Trindade");

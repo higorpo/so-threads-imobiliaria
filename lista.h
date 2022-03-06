@@ -51,7 +51,7 @@ void list(Imovel *noatual)
 {
     Imovel *cabeca = noatual;
     int i = 0;
-    // while (noatual != NULL)
+
     while (noatual->proximo->codigo != cabeca->codigo)
     {
         i++;
@@ -92,7 +92,7 @@ Imovel *removeFromPosition(Imovel *noatual, int position)
     }
 
     int i = 0;
-    // while (atual != NULL && i != position)
+
     while (atual->proximo->codigo != cabeca->codigo && i != position)
     {
         i++;
@@ -126,7 +126,7 @@ int getLastElementPosition(Imovel *noatual)
     int i = 0;
     while (noatual->proximo->codigo != no_cabeca->codigo)
     {
-        // printf("CODIGO DO PROXIMO NO: %d\n", noatual->proximo->codigo);
+
         i++;
         noatual = noatual->proximo;
     }
